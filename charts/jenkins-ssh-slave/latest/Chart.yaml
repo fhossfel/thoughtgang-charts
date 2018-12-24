@@ -12,3 +12,4 @@ sources:
 maintainers:
 - name: Felix Hoßfeld
   email: support@thoughtgang.de
+engine: gotpl
