@@ -1,0 +1,35 @@
+categories:
+- Continous Integration
+- Deveopment
+questions:
+- variable: defaultImage
+  default: "true"
+  description: "Use default Docker images"
+  label: Use Default Images
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: image.repository
+    default: "jenkins/ssh-slave"
+    description: "Jenkins SSH Slave image name"
+    type: string
+    label: Jenkins SSH Slave Image Name
+  - variable: image.tag
+    default: "latest"
+    description: "Jenkins SSH Slave image tag"
+    type: string
+    label: Jenkins SSH Slave Image Tag
+- variable: "JENKINS_SLAVE_SSH_PUBKEY"
+  description: "The public SSH that Jenkins uses to connect to this instance"
+  label: "Public SSH Key"
+  required: true
+  type: "string"
+- variable: master.service.nodePort
+  default: ""
+  description: "NodePort port number(to set explicitly, choose port between 30000-32767)"
+  type: int
+  min: 30000
+  max: 32767
+  label: SSH NodePort number
+  required: true
