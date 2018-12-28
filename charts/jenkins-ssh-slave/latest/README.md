@@ -34,9 +34,9 @@ The following table lists the configurable parameters of the WordPress chart and
 
 | Parameter                            | Description                                | Default                                                    |
 | ------------------------------------ | ------------------------------------------ | ---------------------------------------------------------- |
-| `image.registry`                     | WordPress image registry                   | `docker.io`                                                |
-| `image.repository`                   | WordPress image name                       | `bitnami/wordpress`                                        |
+| `image.registry`                     | Jenkins SSH Slave image registry           | `docker.io`                                                |
+| `image.repository`                   | Jenkins SSH Slave image name               | `jenkinsci/ssh-slave`                                      |
 | `image.tag`                          | WordPress image tag                        | `{VERSION}`                                                |
 | `image.pullPolicy`                   | Image pull policy                          | `Always` if `imageTag` is `latest`, else `IfNotPresent`    |
 | `image.pullSecrets`                  | Specify image pull secrets                 | `nil`                                                      |
-| `jenkins_slave_ssh_pubkey            | User of the application                    | `user`                                                     |
+| `jenkins_slave_ssh_pubkey`           | Public SSH Key to access this node         | `nil`                                                      |

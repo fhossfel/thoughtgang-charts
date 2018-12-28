@@ -1,4 +1,4 @@
-name: jenkina-ss-slave
+name: jenkina-ssh-slave
 version: 0.0.1
 appVersion: 1.0
 description: A Jenkins slave using SSH to establish connection.
@@ -10,6 +10,6 @@ home: https://jenkins.io/
 sources:
 - https://github.com/jenkinsci/docker-ssh-slave.git
 maintainers:
-- name: bitnami-bot
-  email: containers@bitnami.com
+- name: Thought Gang GmbH, Hamburg
+  email: support@thoughtgang.de
 engine: gotpl
