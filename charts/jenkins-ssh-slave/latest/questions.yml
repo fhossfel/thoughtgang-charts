@@ -20,13 +20,6 @@ questions:
     description: "WordPress image tag"
     type: string
     label: Image Tag
-- variable: wordpressUsername
-  default: "user"
-  description: "User of the application"
-  type: string
-  required: true
-  label: WordPress Usernname
-  group: "WordPress Settings"
 - variable: wordpressPassword
   default: ""
   description: "password will be auto-generated if not specified"
