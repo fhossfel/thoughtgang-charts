@@ -28,6 +28,7 @@ questions:
   default: "NodePort"
   label: Jenkins SSH Slave Service Type
   description: "Service type of Jenkins SSH Slave"
+  show_subquestion_if: "NodePort"
   type: enum
   options:
     - "ClusterIP"
