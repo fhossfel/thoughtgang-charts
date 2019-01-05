@@ -1,6 +1,6 @@
 categories:
-- Blog
-- CMS
+- Development
+- Continous Integration
 questions:
 - variable: defaultImage
   default: true
@@ -19,15 +19,26 @@ questions:
     default: "latest"
     description: "Jenkins SSH Slave image tag"
     type: string
-    label: Image Tag
-- variable: jenkins.ssh.public.key
+    label: "Jenkins SSH Slave Image Name Image Tag"
+- variable: jenkinsSSHPublicKey
   description: "Public SSH Key used by the Jenkins Server to access this node"
   type: string
   label: SSH Public Key
-- variable: nodePorts.ssh
-  default: ""
-  description: "NodePort to connect through SSH (to set explicitly, choose port between 30000-32767)"
-  type: int
-  min: 30000
-  max: 32767
-  label: NodePort SSH Port
+- variable: serviceType
+  default: "NodePort"
+  label: Jenkins SSH Slave Service Type
+  description: "Service type of Jenkins SSH Slave"
+  type: enum
+  options:
+    - "ClusterIP"
+    - "NodePort"
+  required: true
+  subquestions:
+  - variable: nodePorts.ssh
+    default: ""
+    description: "NodePort to connect through SSH (to set explicitly, choose port between 30000-32767)"
+    type: int
+    min: 30000
+    max: 32767
+    label: NodePort SSH Port
+    show_if: "serviceType=NodePort"

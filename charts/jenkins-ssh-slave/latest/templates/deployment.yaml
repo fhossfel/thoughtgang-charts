@@ -28,42 +28,22 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         env:
         - name: JENKINS_SLAVE_SSH_PUBKEY
-          value: {{ .Values.wordpressEmail | quote }}
+          value: {{ .Values.jenkinsSSHPublicKey | quote }}
         ports:
-        - name: http
-          containerPort: 80
-        - name: https
-          containerPort: 443
+        - name: ssh
+          containerPort: 22
         livenessProbe:
-          httpGet:
-            path: /wp-login.php
-          {{- if not .Values.healthcheckHttps }}
-            port: http
-          {{- else }}
-            port: https
-            scheme: HTTPS
-          {{- end }}
-{{ toYaml .Values.livenessProbe | indent 10 }}
-        readinessProbe:
-          httpGet:
-            path: /wp-login.php
-          {{- if not .Values.healthcheckHttps }}
-            port: http
-          {{- else }}
-            port: https
-            scheme: HTTPS
-          {{- end }}
+          tcpSocket:
+            port: ssh
+          initialDelaySeconds: 15
+          periodSeconds: 20
 {{ toYaml .Values.readinessProbe | indent 10 }}
-        volumeMounts:
-        - mountPath: /bitnami/apache
-          name: wordpress-data
-          subPath: apache
-        - mountPath: /bitnami/wordpress
-          name: wordpress-data
-          subPath: wordpress
-        - mountPath: /bitnami/php
-          name: wordpress-data
-          subPath: php
+        readinessProbe:
+          tcpSocket:
+            port: ssh
+          initialDelaySeconds: 5
+          periodSeconds: 10
+{{ toYaml .Values.readinessProbe | indent 10 }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
     {{- if .Values.nodeSelector }}
