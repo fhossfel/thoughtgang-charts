@@ -30,7 +30,7 @@ Don't put quotes around the public key. You should be all set.
 
 ## Configuration
 
-The following table lists the configurable parameters of the WordPress chart and their default values.
+The following table lists the configurable parameters of the Jenkins SSH Slave chart and their default values.
 
 | Parameter                            | Description                                | Default                                                    |
 | ------------------------------------ | ------------------------------------------ | ---------------------------------------------------------- |
@@ -39,4 +39,9 @@ The following table lists the configurable parameters of the WordPress chart and
 | `image.tag`                          | WordPress image tag                        | `{VERSION}`                                                |
 | `image.pullPolicy`                   | Image pull policy                          | `Always` if `imageTag` is `latest`, else `IfNotPresent`    |
 | `image.pullSecrets`                  | Specify image pull secrets                 | `nil`                                                      |
-| `jenkins_slave_ssh_pubkey`           | Public SSH Key to access this node         | `nil`                                                      |
+| `jenkinsSSHPublicKey`                | Public SSH Key to access this node         | `nil`                                                      |
+| `serviceType`                        | Service type (either Nodeport or ClusterIP)| `nil`                                                      |
+| `nodePorts.ssh`                      | Nodeport (automatically addined if `nil`   | `nil`                                                      |
+
+> **Protip**: Use ClusterIP only if your Jenkins instance is running on the same cluster as 
+> the SSH Slaves. Otherwise use NodePort.
