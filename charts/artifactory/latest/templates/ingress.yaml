@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $serviceName := include "artifactory.fullname" . -}}
 {{- $servicePort := .Values.artifactory.externalPort -}}
+{{- $path := .Values.ingress.path | default "/" -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -24,7 +25,7 @@ spec:
   - host: {{ $host }}
     http:
       paths:
-        - path: /
+        - path: {{ $path }}
           backend:
             serviceName: {{ $serviceName }}
             servicePort: {{ $servicePort }}
